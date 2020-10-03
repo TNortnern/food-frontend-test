@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import alasql from 'alasql'
 export default {
   props: {
     list: {
@@ -94,6 +93,7 @@ export default {
           arr.push(a)
         }
       })
+      // eslint-disable-next-line no-undef
       arr = alasql(`SELECT * FROM ? ORDER BY ${this.sort} DESC`, [arr])
       return arr
     },
