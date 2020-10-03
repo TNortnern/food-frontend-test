@@ -7,7 +7,10 @@
         <!-- image search box -->
         <Search @search="search" />
       </div>
-      <Cards :list="list" />
+      <h3 v-if="!searched" class="font-bold text-lg sm:text-3xl text-center mt-8">
+        What are you waiting for? Find your recipe in our large database.
+      </h3>
+      <Cards :searched="searched" :list="list" />
     </div>
   </div>
 </template>
@@ -18,7 +21,8 @@ export default {
     return {
       q: '',
       list: [],
-      count: 0
+      count: 0,
+      searched: false
     }
   },
   methods: {
@@ -27,6 +31,7 @@ export default {
         const { data } = await this.$axios.get(`?q=${q}`)
         this.list = data.SearchResults
         this.count = data.CountResults
+        this.searched = true
       } catch (error) {
       }
     }

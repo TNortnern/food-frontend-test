@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="modalCard ? 'w-5/6 xl:w-1/3 modal-height' : 'w-5/6 sm:w-card-med-lg lg:w-23%'"
+    :class="modalCard ? 'w-5/6 xl:w-1/3 modal-height' : ''"
     class="bg-white shadow-lg  mr-1 mb-4 relative group"
   >
-    <div v-if="modalCard" class="border-b mb-1 flex justify-end">
+    <div v-if="modalCard" class="border-b border-blue-400 mb-1 flex justify-end">
       <button class="text-3xl text-red-400 pr-2 hover:text-opacity-50 duration-100" @click="$store.commit('food/setCurrent', null)">
         &times;
       </button>
