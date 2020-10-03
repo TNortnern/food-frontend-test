@@ -1,13 +1,20 @@
 <template>
   <div
-    class="bg-white shadow-lg w-23% mr-1 mb-4 relative group"
+    :class="modalCard ? 'w-5/6 xl:w-1/3 modal-height' : 'w-5/6 sm:w-card-med-lg lg:w-23%'"
+    class="bg-white shadow-lg  mr-1 mb-4 relative group"
   >
-    <nuxt-link class="overlay cursor-zoom group-hover:opacity-100" :to="'/item/' + i">
+    <div v-if="modalCard" class="border-b mb-1 flex justify-end">
+      <button class="text-3xl text-red-400 pr-2 hover:text-opacity-50 duration-100" @click="$store.commit('food/setCurrent', null)">
+        &times;
+      </button>
+    </div>
+    <button v-if="!modalCard" class="overlay cursor-zoom group-hover:opacity-100" @click="$store.commit('food/setCurrent', item)">
       View
-    </nuxt-link>
+    </button>
     <div class="border-b border-blue-400 pb-2">
       <img
-        class="w-full h-48"
+        :class="modalCard ? 'h-auto' : 'h-48'"
+        class="w-full"
         :src="item.ImageFilePath"
         alt="img"
       >
@@ -20,17 +27,19 @@
           {{ item.Desc1 }}
         </h1>
       </div>
-      <!-- <span>Made with:</span>
-            <template v-if="item.Ingredients && item.Ingredients.length">
-              <span v-for="(ingredient, x) in item.Ingredients" :key="x" class="font-bold text-sm">
-                {{ ingredient.Desc1 }}<template v-if="x !== item.Ingredients.length - 1">,</template>
-              </span>
-            </template>
-            <template v-else>
-              <span>
-                No ingredients found.
-              </span>
-            </template> -->
+      <div v-if="modalCard">
+        <span>Made with:</span>
+        <template v-if="item.Ingredients && item.Ingredients.length">
+          <span v-for="(ingredient, x) in item.Ingredients" :key="x" class="font-bold text-sm">
+            {{ ingredient.Desc1 }}<template v-if="x !== item.Ingredients.length - 1">,</template>
+          </span>
+        </template>
+        <template v-else>
+          <span>
+            No ingredients found.
+          </span>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -42,9 +51,9 @@ export default {
       type: Object,
       default: () => {}
     },
-    i: {
-      type: Number,
-      default: 0
+    modalCard: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -53,5 +62,8 @@ export default {
 <style scoped>
 .overlay {
   @apply bg-black bg-opacity-50 absolute inset-0 h-full w-full opacity-0 duration-100 ease-in-out text-white text-lg flex items-center justify-center
+}
+.modal-height {
+  height: '80%'
 }
 </style>

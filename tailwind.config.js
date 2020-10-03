@@ -13,7 +13,8 @@ module.exports = {
         inter: ['Inter', 'sans-serif']
       },
       width: {
-        '23%': '23%'
+        '23%': '23%',
+        'card-med-lg': '43%'
       },
       cursor: {
         zoom: 'zoom-in'
