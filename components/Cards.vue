@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import alasql from 'alasql'
 export default {
   props: {
     list: {
@@ -56,13 +57,13 @@ export default {
         const brand = item.Brand.Desc1
         if (!arr.includes(brand)) { arr.push(brand) }
       })
-      return arr
+      return arr.sort()
     },
     possibleSorts () {
       if (!this.items || !this.items.length) {
         return
       }
-      return Object.keys(this.items[0])
+      return Object.keys(this.items[0]).sort()
     },
     sortedList () {
       if (!this.items || !this.items.length) {
@@ -87,13 +88,14 @@ export default {
   },
   methods: {
     sortItems (newList) {
-      const arr = []
+      let arr = []
       newList.forEach((a) => {
         if (this.brand === 'All' || a.Brand.Desc1 === this.brand) {
           arr.push(a)
         }
       })
-      return arr.sort()
+      arr = alasql(`SELECT * FROM ? ORDER BY ${this.sort} DESC`, [arr])
+      return arr
     },
     beforeLeave (el) {
       const { marginLeft, marginTop, width, height } = window.getComputedStyle(el)

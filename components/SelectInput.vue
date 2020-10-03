@@ -19,6 +19,10 @@ export default {
     name: {
       type: String,
       default: ''
+    },
+    value: {
+      type: String,
+      default: ''
     }
   }
 }
