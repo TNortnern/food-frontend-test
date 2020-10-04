@@ -13,7 +13,7 @@
     </button>
     <div class="border-b border-blue-400 pb-2">
       <img
-        :class="modalCard ? 'h-auto' : 'h-48'"
+        :class="modalCard ? 'h-auto' : 'h-64'"
         class="w-full"
         :src="item.ImageFilePath"
         alt="img"
@@ -21,8 +21,14 @@
     </div>
     <div class="px-4 py-2">
       <div>
-        <span :class="item.ABBScore >= 70 ? 'text-green-500' : 'text-red-500'">ABB Score:</span>
-        <span class="font-bold">{{ item.ABBScore }}</span>
+        <div>
+          <span :class="item.ABBScore >= 70 ? 'text-green-500' : 'text-red-500'">ABB Score:</span>
+          <span class="font-bold">{{ item.ABBScore }}</span>
+        </div>
+        <div>
+          <span :class="item.Brand && item.Brand.Desc1 ? 'text-blue-500' : 'text-gray-100'">Brand:</span>
+          <span class="font-bold">{{ (item.Brand && item.Brand.Desc1) || 'N/A' }}</span>
+        </div>
         <h1 class="font-bold text-lg">
           {{ item.Desc1 }}
         </h1>
