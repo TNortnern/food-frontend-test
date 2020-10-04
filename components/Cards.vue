@@ -51,12 +51,14 @@ export default {
       if (!this.items || !this.items.length) {
         return
       }
-      const arr = ['All']
+      let arr = []
       this.items.forEach((item) => {
         const brand = item.Brand.Desc1
         if (!arr.includes(brand)) { arr.push(brand) }
       })
-      return arr.sort()
+      arr = arr.sort()
+      arr.unshift('All')
+      return arr
     },
     possibleSorts () {
       if (!this.items || !this.items.length) {
