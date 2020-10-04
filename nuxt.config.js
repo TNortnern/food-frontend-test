@@ -13,10 +13,10 @@ export default {
     script: [{ src: 'https://cdn.jsdelivr.net/npm/alasql@0.6' }]
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/tailwind.css', 'vue-select/dist/vue-select.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/v-select.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
