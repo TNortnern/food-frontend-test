@@ -70,6 +70,6 @@ export default {
   @apply bg-black bg-opacity-50 absolute inset-0 h-full w-full opacity-0 duration-100 ease-in-out text-white text-lg flex items-center justify-center
 }
 .modal-height {
-  height: '80%'
+  height: 80%
 }
 </style>
