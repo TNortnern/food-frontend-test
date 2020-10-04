@@ -1,10 +1,10 @@
 <template>
   <div
-    :class="modalCard ? 'w-5/6 xl:w-1/3 modal-height' : ''"
+    :class="modalCard ? 'w-5/6 xl:w-1/3 modal-height overflow-y-auto' : ''"
     class="bg-white shadow-lg  mr-1 mb-4 relative group"
   >
     <div v-if="modalCard" class="border-b border-blue-400 mb-1 flex justify-end">
-      <button class="text-3xl text-red-400 pr-2 hover:text-opacity-50 duration-100" @click="$store.commit('food/setCurrent', null)">
+      <button class="text-3xl text-red-400 pr-2 hover:text-opacity-50 duration-100 focus:outline-none" @click="$store.commit('food/setCurrent', null)">
         &times;
       </button>
     </div>
@@ -13,13 +13,16 @@
     </button>
     <div class="border-b border-blue-400 pb-2">
       <img
-        :class="modalCard ? 'h-auto' : 'h-64'"
+        :class="modalCard ? 'h-64' : 'h-56'"
         class="w-full"
         :src="item.ImageFilePath"
         alt="img"
       >
     </div>
     <div class="px-4 py-2">
+      <h1 class="font-bold text-xl">
+        {{ item.Desc1 }}
+      </h1>
       <div>
         <div>
           <span :class="item.ABBScore >= 70 ? 'text-green-500' : 'text-red-500'">ABB Score:</span>
@@ -29,9 +32,6 @@
           <span :class="item.Brand && item.Brand.Desc1 ? 'text-blue-500' : 'text-gray-100'">Brand:</span>
           <span class="font-bold">{{ (item.Brand && item.Brand.Desc1) || 'N/A' }}</span>
         </div>
-        <h1 class="font-bold text-lg">
-          {{ item.Desc1 }}
-        </h1>
       </div>
       <div v-if="modalCard">
         <span>Made with:</span>
